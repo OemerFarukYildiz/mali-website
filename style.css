@@ -286,33 +286,6 @@ body {
     }
 }
 
-#fullscreen-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 10px;
-    color: white;
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    display: none;
-}
-
-#fullscreen-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.1);
-}
-
-/* Show fullscreen button only on mobile landscape */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-    #fullscreen-btn {
-        display: block;
-    }
-}
 
 .stars {
     position: fixed;

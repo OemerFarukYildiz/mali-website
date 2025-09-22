@@ -4,6 +4,7 @@ let touchStartX = 0;
 let touchEndX = 0;
 let isTransitioning = false;
 let introShown = false;
+let lastTap = 0;
 
 function init() {
     const container = document.querySelector('.container');
@@ -22,21 +23,6 @@ function init() {
         bgMusic.volume = 0.1;
     }
     
-    // Fullscreen button
-    const fullscreenBtn = document.getElementById('fullscreen-btn');
-    if (fullscreenBtn) {
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-    }
-    
-    // Handle orientation change
-    window.addEventListener('orientationchange', () => {
-        setTimeout(() => {
-            if (window.matchMedia("(orientation: landscape)").matches) {
-                tryEnterFullscreen();
-            }
-        }, 100);
-    });
-    
     setTimeout(() => {
         document.querySelector('.navigation-hint').style.display = 'block';
     }, 2000);
@@ -48,6 +34,18 @@ function init() {
 
 function handleTap(e) {
     if (e.target.closest('.navigation-hint')) return;
+    
+    // Check for double tap
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    
+    if (tapLength < 500 && tapLength > 0) {
+        // Double tap detected - toggle fullscreen
+        e.preventDefault();
+        toggleFullscreen();
+        return;
+    }
+    lastTap = currentTime;
     
     // Handle intro screen separately
     if (currentScreen === 0 && !introShown) {
