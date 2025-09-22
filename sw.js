@@ -1,10 +1,11 @@
-const CACHE_NAME = 'mali-app-v2';
+const CACHE_NAME = 'mali-app-v3';
 const urlsToCache = [
-  '/mali-website/',
-  '/mali-website/index.html',
-  '/mali-website/style.css',
-  '/mali-website/script.js',
-  '/mali-website/manifest.json'
+  './',
+  './index.html',
+  './style.css',
+  './script.js',
+  './manifest.json',
+  './background.mp3'
 ];
 
 self.addEventListener('install', event => {

@@ -103,6 +103,10 @@ body {
     background: #1a1a2e;
 }
 
+.screen[data-bg="bg6"] .bg-video {
+    object-position: center bottom;
+}
+
 .screen[data-bg="bg7"] {
     background: #1a1a2e;
 }
