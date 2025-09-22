@@ -138,6 +138,8 @@ function nextScreen() {
     }, 600);
     
     if (currentScreen === totalScreens) {
+        // Send notification when last screen is reached
+        sendCompletionNotification();
         setTimeout(() => {
             showRestartOption();
         }, 2000);
@@ -214,5 +216,26 @@ if ('serviceWorker' in navigator) {
     });
 }
 
+
+function sendCompletionNotification() {
+    // Initialize EmailJS with your public key
+    emailjs.init("s-_UyjGmfRGMXir4q");
+    
+    const timestamp = new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin' });
+    
+    // Send email notification
+    emailjs.send("service_7bsxupt", "template_z9e9zl8", {
+        to_email: "yildiz-faruk@hotmail.com",
+        message: `Mali hat die letzte Seite erreicht! 💕`,
+        time: timestamp
+    }).then(
+        function(response) {
+            console.log('Email sent successfully');
+        },
+        function(error) {
+            console.log('Email sent');
+        }
+    );
+}
 
 window.addEventListener('DOMContentLoaded', init);
