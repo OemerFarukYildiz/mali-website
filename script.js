@@ -1,8 +1,9 @@
-let currentScreen = 0; // Start with intro
+let currentScreen = -1; // Start with guide screen
 const totalScreens = 9;
 let touchStartX = 0;
 let touchEndX = 0;
 let isTransitioning = false;
+let guideShown = false;
 let introShown = false;
 
 function init() {
@@ -48,7 +49,14 @@ function init() {
 function handleTap(e) {
     if (e.target.closest('.navigation-hint')) return;
     
-    // Handle intro screen separately
+    // Handle guide screen
+    if (currentScreen === -1 && !guideShown) {
+        guideShown = true;
+        nextScreen();
+        return;
+    }
+    
+    // Handle intro screen
     if (currentScreen === 0 && !introShown) {
         const bgMusic = document.getElementById('background-music');
         if (bgMusic) {
@@ -102,6 +110,24 @@ function handleKeyPress(e) {
 
 function nextScreen() {
     if (isTransitioning) return;
+    
+    // Handle transition from guide to intro
+    if (currentScreen === -1) {
+        isTransitioning = true;
+        const guide = document.querySelector('#guide');
+        const intro = document.querySelector('#intro');
+        
+        guide.classList.remove('active');
+        guide.classList.add('prev');
+        intro.classList.add('active');
+        
+        currentScreen = 0;
+        
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 600);
+        return;
+    }
     
     // Handle transition from intro to screen1
     if (currentScreen === 0) {
@@ -177,9 +203,10 @@ function restartExperience() {
         screen.classList.remove('active', 'prev');
     });
     
-    currentScreen = 0;
+    currentScreen = -1;
+    guideShown = false;
     introShown = false;
-    document.querySelector('#intro').classList.add('active');
+    document.querySelector('#guide').classList.add('active');
     
     const hint = document.querySelector('.navigation-hint span');
     hint.textContent = 'Tippe um fortzufahren';
