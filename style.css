@@ -46,15 +46,13 @@ body {
 
 .bg-video {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     z-index: -1;
     object-fit: cover;
+    object-position: center;
 }
 
 .intro-content {
@@ -69,7 +67,7 @@ body {
 
 .intro-content h1 {
     color: #ffffff;
-    font-size: 48px;
+    font-size: clamp(32px, 8vw, 48px);
     margin-bottom: 20px;
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     letter-spacing: 2px;
@@ -207,25 +205,84 @@ body {
     display: block;
 }
 
-@media (max-width: 768px) {
-    .message-box {
-        padding: 25px;
-        max-width: 95%;
-    }
-    
-    .message-box p {
-        font-size: 16px;
+/* iOS Safe Areas */
+@supports (padding: max(0px)) {
+    .screen {
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     }
 }
 
-@media (max-height: 600px) {
+/* iPhone optimization */
+@media screen and (max-width: 428px) {
     .message-box {
         padding: 20px;
+        max-width: 90%;
+        margin: 0 auto;
     }
     
     .message-box p {
-        font-size: 15px;
+        font-size: clamp(14px, 4vw, 18px);
         line-height: 1.6;
+    }
+    
+    .navigation-hint {
+        bottom: max(30px, env(safe-area-inset-bottom));
+    }
+}
+
+/* iPhone SE and smaller */
+@media screen and (max-width: 375px) {
+    .message-box {
+        padding: 18px;
+        max-width: 92%;
+    }
+    
+    .message-box p {
+        font-size: 14px;
+    }
+}
+
+/* Landscape mode */
+@media screen and (orientation: landscape) {
+    .bg-video {
+        object-fit: cover;
+        object-position: center;
+    }
+    
+    .message-box {
+        padding: 15px 20px;
+        max-width: 60%;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+    
+    .message-box p {
+        font-size: clamp(13px, 2.5vh, 16px);
+        line-height: 1.5;
+    }
+    
+    .intro-content h1 {
+        font-size: clamp(24px, 5vh, 36px);
+    }
+    
+    .navigation-hint {
+        bottom: 20px;
+    }
+}
+
+/* iPhone Landscape specific */
+@media screen and (orientation: landscape) and (max-height: 414px) {
+    .screen {
+        padding: 0 env(safe-area-inset-left) 0 env(safe-area-inset-right);
+    }
+    
+    .message-box {
+        padding: 12px 18px;
+        max-width: 65%;
+    }
+    
+    .message-box p {
+        font-size: 13px;
     }
 }
 
