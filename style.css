@@ -145,12 +145,12 @@ body {
 }
 
 .message-box {
-    background: rgba(26, 26, 46, 0.7);
+    background: rgba(26, 26, 46, 0.5);
     padding: 30px;
     border-radius: 20px;
     max-width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.05);
     animation: fadeInUp 0.8s ease-out;
 }
