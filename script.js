@@ -4,7 +4,6 @@ let touchStartX = 0;
 let touchEndX = 0;
 let isTransitioning = false;
 let introShown = false;
-let lastTap = 0;
 
 function init() {
     const container = document.querySelector('.container');
@@ -23,6 +22,20 @@ function init() {
         bgMusic.volume = 0.1;
     }
     
+    // Check if iOS Safari and not in standalone mode
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isStandalone = window.navigator.standalone === true;
+    
+    if (isIOS && !isStandalone) {
+        setTimeout(() => {
+            document.getElementById('install-prompt').style.display = 'block';
+        }, 3000);
+        
+        document.getElementById('close-prompt').addEventListener('click', () => {
+            document.getElementById('install-prompt').style.display = 'none';
+        });
+    }
+    
     setTimeout(() => {
         document.querySelector('.navigation-hint').style.display = 'block';
     }, 2000);
@@ -34,18 +47,6 @@ function init() {
 
 function handleTap(e) {
     if (e.target.closest('.navigation-hint')) return;
-    
-    // Check for double tap
-    const currentTime = new Date().getTime();
-    const tapLength = currentTime - lastTap;
-    
-    if (tapLength < 500 && tapLength > 0) {
-        // Double tap detected - toggle fullscreen
-        e.preventDefault();
-        toggleFullscreen();
-        return;
-    }
-    lastTap = currentTime;
     
     // Handle intro screen separately
     if (currentScreen === 0 && !introShown) {
@@ -213,37 +214,5 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-function toggleFullscreen() {
-    if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-        tryEnterFullscreen();
-    } else {
-        tryExitFullscreen();
-    }
-}
-
-function tryEnterFullscreen() {
-    const elem = document.documentElement;
-    if (elem.requestFullscreen) {
-        elem.requestFullscreen().catch(() => {});
-    } else if (elem.webkitRequestFullscreen) {
-        elem.webkitRequestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-        elem.mozRequestFullScreen();
-    } else if (elem.msRequestFullscreen) {
-        elem.msRequestFullscreen();
-    }
-}
-
-function tryExitFullscreen() {
-    if (document.exitFullscreen) {
-        document.exitFullscreen().catch(() => {});
-    } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
-    }
-}
 
 window.addEventListener('DOMContentLoaded', init);

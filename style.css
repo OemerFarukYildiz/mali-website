@@ -287,6 +287,46 @@ body {
 }
 
 
+.install-prompt {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(26, 26, 46, 0.95);
+    padding: 15px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    display: none;
+    z-index: 200;
+    max-width: 90%;
+    animation: fadeInUp 0.5s ease;
+}
+
+.install-prompt p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.install-prompt svg {
+    flex-shrink: 0;
+}
+
+#close-prompt {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
 .stars {
     position: fixed;
     top: 0;
