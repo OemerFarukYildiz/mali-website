@@ -23,19 +23,6 @@ function init() {
         bgMusic.volume = 0.1;
     }
     
-    // Check if iOS Safari and not in standalone mode
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const isStandalone = window.navigator.standalone === true;
-    
-    if (isIOS && !isStandalone) {
-        setTimeout(() => {
-            document.getElementById('install-prompt').style.display = 'block';
-        }, 3000);
-        
-        document.getElementById('close-prompt').addEventListener('click', () => {
-            document.getElementById('install-prompt').style.display = 'none';
-        });
-    }
     
     setTimeout(() => {
         document.querySelector('.navigation-hint').style.display = 'block';
