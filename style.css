@@ -126,6 +126,28 @@ body {
     text-align: center;
 }
 
+.intro-message {
+    background: rgba(26, 26, 46, 0.7);
+    padding: 25px 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    max-width: 500px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.intro-message p {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.intro-message p:last-child {
+    margin-bottom: 0;
+}
+
 .screen[data-bg="guide"] {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
 }
