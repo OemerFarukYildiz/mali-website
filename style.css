@@ -145,13 +145,13 @@ body {
 }
 
 .message-box {
-    background: rgba(26, 26, 46, 0.85);
+    background: rgba(26, 26, 46, 0.7);
     padding: 30px;
     border-radius: 20px;
     max-width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
     animation: fadeInUp 0.8s ease-out;
 }
 
@@ -167,12 +167,12 @@ body {
 }
 
 .message-box p {
-    color: rgba(255, 255, 255, 0.95);
+    color: rgba(255, 255, 255, 0.9);
     font-size: 18px;
     line-height: 1.8;
     text-align: center;
     letter-spacing: 0.3px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 .navigation-hint {
