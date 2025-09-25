@@ -74,13 +74,13 @@ body {
 }
 
 .intro-guide {
-    background: rgba(26, 26, 46, 0.8);
-    padding: 20px 30px;
+    background: rgba(26, 26, 46, 0.4);
+    padding: 12px 18px;
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    max-width: 400px;
+    max-width: 240px;
     margin: 0 auto;
     text-align: center;
+    transform: scale(0.6);
 }
 
 .guide-title {
