@@ -218,12 +218,11 @@ body {
 }
 
 .message-box {
-    background: rgba(26, 26, 46, 0.3);
+    background: rgba(26, 26, 46, 0.2);
     padding: 30px;
     border-radius: 20px;
     max-width: 90%;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-    backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.03);
     animation: fadeInUp 0.8s ease-out;
 }
