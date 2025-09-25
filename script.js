@@ -47,7 +47,10 @@ function handleTap(e) {
     if (currentScreen === 0 && !introShown) {
         const bgMusic = document.getElementById('background-music');
         if (bgMusic) {
-            bgMusic.play();
+            // Start music after 5 seconds delay
+            setTimeout(() => {
+                bgMusic.play();
+            }, 5000);
         }
         introShown = true;
         nextScreen();
