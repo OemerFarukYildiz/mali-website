@@ -81,10 +81,12 @@ body {
 
 .intro-guide {
     background: rgba(26, 26, 46, 0.4);
-    padding: 20px 25px;
+    padding: 15px 20px;
     border-radius: 15px;
-    max-width: 300px;
+    max-width: 220px;
     text-align: center;
+    transform: scale(0.8);
+    transform-origin: center right;
 }
 
 .guide-title {
