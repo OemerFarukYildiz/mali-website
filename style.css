@@ -78,9 +78,12 @@ body {
     padding: 12px 18px;
     border-radius: 15px;
     max-width: 240px;
-    margin: 0 auto;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
     text-align: center;
     transform: scale(0.6);
+    transform-origin: bottom right;
 }
 
 .guide-title {
