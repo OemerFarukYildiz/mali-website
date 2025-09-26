@@ -5,6 +5,7 @@ let touchEndX = 0;
 let isTransitioning = false;
 let guideShown = false;
 let introShown = false;
+let musicStarted = false;
 
 function init() {
     const container = document.querySelector('.container');
@@ -35,28 +36,34 @@ function init() {
 
 function handleTap(e) {
     if (e.target.closest('.navigation-hint')) return;
-    
+
+    // Try to start music on any tap if it hasn't started yet
+    if (!musicStarted) {
+        const bgMusic = document.getElementById('background-music');
+        if (bgMusic) {
+            bgMusic.play().then(() => {
+                musicStarted = true;
+                console.log('Music started');
+            }).catch(err => {
+                console.log('Could not start music:', err);
+            });
+        }
+    }
+
     // Handle guide screen
     if (currentScreen === -1 && !guideShown) {
         guideShown = true;
         nextScreen();
         return;
     }
-    
+
     // Handle intro screen
     if (currentScreen === 0 && !introShown) {
-        const bgMusic = document.getElementById('background-music');
-        if (bgMusic) {
-            // Start music after 5 seconds delay
-            setTimeout(() => {
-                bgMusic.play();
-            }, 5000);
-        }
         introShown = true;
         nextScreen();
         return;
     }
-    
+
     nextScreen();
 }
 
