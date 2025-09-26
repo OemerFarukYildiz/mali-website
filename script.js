@@ -18,10 +18,15 @@ function init() {
     
     createStars();
     
-    // Set background music volume
+    // Set background music volume and preload
     const bgMusic = document.getElementById('background-music');
     if (bgMusic) {
         bgMusic.volume = 0.1;
+
+        // Log loading progress
+        bgMusic.addEventListener('loadstart', () => console.log('Music loading started...'));
+        bgMusic.addEventListener('canplay', () => console.log('Music ready to play!'));
+        bgMusic.addEventListener('error', (e) => console.log('Music loading error:', e));
     }
     
     
